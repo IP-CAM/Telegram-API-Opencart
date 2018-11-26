@@ -1,10 +1,16 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.List;
 
+@Entity
 public class Cart implements Identified {
+    @Id
     private long id;
 
+    @OneToMany
     private List<BuyItem> buyItemList;
 
     public void addToCart(BuyItem buyItem) {

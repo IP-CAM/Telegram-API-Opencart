@@ -1,14 +1,20 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.time.Instant;
 
+@Entity
 public class User {
+    @Id
     private long id;
 
     private String login;
 
     private String phone;
 
+    @OneToOne
     private Cart cart;
 
     private Instant registerDate;

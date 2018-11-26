@@ -1,20 +1,14 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.List;
 
+@Entity
 public class Category extends TaxonomyUnit {
-    private long id;
 
+    @OneToMany
     private List<TaxonomyUnit> taxonomyUnitList;
-
-    @Override
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public List<TaxonomyUnit> getTaxonomyUnitList() {
         return taxonomyUnitList;
