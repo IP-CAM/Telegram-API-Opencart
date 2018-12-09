@@ -8,13 +8,22 @@ import java.util.List;
 public class Category extends TaxonomyUnit {
 
     @OneToMany
-    private List<TaxonomyUnit> taxonomyUnitList;
+    private List<TaxonomyUnit> taxonomyUnits;
 
-    public List<TaxonomyUnit> getTaxonomyUnitList() {
-        return taxonomyUnitList;
+    public List<TaxonomyUnit> getTaxonomyUnits() {
+        return taxonomyUnits;
     }
 
-    public void setTaxonomyUnitList(List<TaxonomyUnit> taxonomyUnitList) {
-        this.taxonomyUnitList = taxonomyUnitList;
+    public void setTaxonomyUnits(List<TaxonomyUnit> taxonomyUnits) {
+        this.taxonomyUnits = taxonomyUnits;
+    }
+
+
+    public void addToCategory(List<TaxonomyUnit> taxonomyUnits) {
+        this.taxonomyUnits.addAll(taxonomyUnits);
+    }
+
+    public void addToCategory(TaxonomyUnit taxonomyUnit) {
+        taxonomyUnits.add(taxonomyUnit);
     }
 }
