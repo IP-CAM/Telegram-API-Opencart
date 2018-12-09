@@ -2,6 +2,7 @@ package ua.kpi.telegram.opencart.telegramopencart.domain.service.impl;
 
 import org.springframework.stereotype.Service;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.BuyItem;
+import ua.kpi.telegram.opencart.telegramopencart.domain.model.Cart;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Customer;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.CustomerService;
@@ -57,7 +58,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void clearCart(String login) {
+        Cart cart = customerRepository.findCustomerByLogin(login).getCart();
 
+        cart.clear();
     }
 
     @Override
@@ -67,6 +70,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Goods> getAllCustomerGoods() {
-        return null;
+        return goodsRepository.findAll();
     }
 }

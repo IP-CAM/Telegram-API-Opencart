@@ -41,6 +41,10 @@ public class Cart implements Identified {
         buyItems.clear();
     }
 
+    public boolean isEmpty() {
+        return buyItems.isEmpty();
+    }
+
     @Override
     public long getId() {
         return id;
