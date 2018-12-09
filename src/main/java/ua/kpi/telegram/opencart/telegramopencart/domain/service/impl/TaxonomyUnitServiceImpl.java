@@ -4,19 +4,25 @@ import org.springframework.stereotype.Service;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Category;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.TaxonomyUnit;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.TaxonomyUnitService;
+import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.CategoryRepository;
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.TaxonomyUnitRepository;
 
 @Service
 public class TaxonomyUnitServiceImpl implements TaxonomyUnitService {
     private final TaxonomyUnitRepository taxonomyUnitRepository;
 
-    public TaxonomyUnitServiceImpl(TaxonomyUnitRepository taxonomyUnitRepository) {
+    private final CategoryRepository categoryRepository;
+
+    public TaxonomyUnitServiceImpl(TaxonomyUnitRepository taxonomyUnitRepository,
+                                   CategoryRepository categoryRepository) {
         this.taxonomyUnitRepository = taxonomyUnitRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
-    public void changeCategory(String name, Category category) {
+    public void changeCategory(String name, String categoryName) {
         TaxonomyUnit taxonomyUnit = taxonomyUnitRepository.findByName(name);
+        Category category = categoryRepository.findByName(categoryName);
 
         taxonomyUnit.setParentCategory(category);
 

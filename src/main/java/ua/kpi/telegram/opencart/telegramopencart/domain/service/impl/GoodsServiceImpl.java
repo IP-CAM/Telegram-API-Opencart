@@ -6,6 +6,8 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.GoodsService;
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsRepository;
 
+import java.util.Collection;
+
 @Service
 public class GoodsServiceImpl implements GoodsService {
     private final GoodsRepository goodsRepository;
@@ -22,12 +24,17 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public Goods addGoods(Goods goods) {
+    public Goods add(Goods goods) {
         return goodsRepository.save(goods);
     }
 
     @Override
-    public void removeGoods(String name) {
+    public void remove(String name) {
         goodsRepository.deleteByName(name);
+    }
+
+    @Override
+    public Collection<Goods> getAll() {
+        return goodsRepository.findAll();
     }
 }
