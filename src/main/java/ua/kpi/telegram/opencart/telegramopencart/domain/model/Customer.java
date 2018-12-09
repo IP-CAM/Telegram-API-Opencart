@@ -6,7 +6,7 @@ import javax.persistence.OneToOne;
 import java.time.Instant;
 
 @Entity
-public class User {
+public class Customer {
     @Id
     private long id;
 
