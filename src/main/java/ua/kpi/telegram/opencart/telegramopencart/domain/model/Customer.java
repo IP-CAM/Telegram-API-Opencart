@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.time.Instant;
+import java.util.Objects;
 
 @Entity
 public class Customer {
@@ -18,9 +19,17 @@ public class Customer {
     private String phone;
 
     @OneToOne
-    private Cart cart;
+    private Cart cart = new Cart();
 
     private Instant registerDate;
+
+    public Customer() {
+    }
+
+    public Customer(String login, String phone) {
+        this.login = login;
+        this.phone = phone;
+    }
 
     public long getId() {
         return id;
@@ -60,5 +69,22 @@ public class Customer {
 
     public void setRegisterDate(Instant registerDate) {
         this.registerDate = registerDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return id == customer.id &&
+                Objects.equals(login, customer.login) &&
+                Objects.equals(phone, customer.phone) &&
+                Objects.equals(cart, customer.cart) &&
+                Objects.equals(registerDate, customer.registerDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, phone, cart, registerDate);
     }
 }
