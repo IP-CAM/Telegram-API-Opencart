@@ -1,4 +1,4 @@
-package ua.kpi.telegram.opencart.telegramopencart.domain.model;
+package ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;

@@ -1,9 +1,9 @@
-package ua.kpi.telegram.opencart.telegramopencart.repository;
+package ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ua.kpi.telegram.opencart.telegramopencart.domain.model.Category;
-import ua.kpi.telegram.opencart.telegramopencart.domain.model.TaxonomyUnit;
+import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Category;
+import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.TaxonomyUnit;
 
 import java.util.List;
 

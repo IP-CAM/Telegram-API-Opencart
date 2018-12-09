@@ -2,9 +2,9 @@ package ua.kpi.telegram.opencart.telegramopencart.domain.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.kpi.telegram.opencart.telegramopencart.domain.model.Goods;
+import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.GoodsService;
-import ua.kpi.telegram.opencart.telegramopencart.repository.GoodsRepository;
+import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsRepository;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {

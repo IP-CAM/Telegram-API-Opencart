@@ -1,4 +1,6 @@
-package ua.kpi.telegram.opencart.telegramopencart.domain.model;
+package ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy;
+
+import ua.kpi.telegram.opencart.telegramopencart.domain.model.Identified;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
