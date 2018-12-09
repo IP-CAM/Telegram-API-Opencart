@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.net.URL;
 
 @Entity
@@ -11,6 +12,9 @@ public abstract class TaxonomyUnit implements Identified {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @ManyToOne
+    private Category parentCategory;
 
     private String name;
 
@@ -25,6 +29,15 @@ public abstract class TaxonomyUnit implements Identified {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+
+    public void setParentCategory(Category parentCategory) {
+        this.parentCategory = parentCategory;
+    }
+
+    public Category getParentCategory() {
+        return parentCategory;
     }
 
     public String getName() {
