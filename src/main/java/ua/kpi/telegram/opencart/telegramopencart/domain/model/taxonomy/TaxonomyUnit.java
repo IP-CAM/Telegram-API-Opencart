@@ -24,6 +24,15 @@ public abstract class TaxonomyUnit implements Identified {
 
     private URL image;
 
+    public TaxonomyUnit() {
+
+    }
+
+    public TaxonomyUnit(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     @Override
     public long getId() {
         return id;
@@ -32,7 +41,6 @@ public abstract class TaxonomyUnit implements Identified {
     public void setId(long id) {
         this.id = id;
     }
-
 
     public void setParentCategory(Category parentCategory) {
         this.parentCategory = parentCategory;
@@ -64,5 +72,16 @@ public abstract class TaxonomyUnit implements Identified {
 
     public void setImage(URL image) {
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "TaxonomyUnit{" +
+                "id=" + id +
+                ", parentCategory=" + parentCategory +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", image=" + image +
+                '}';
     }
 }

@@ -19,6 +19,14 @@ public class BuyItem implements Identified {
 
     private long amount;
 
+    public BuyItem() {
+    }
+
+    public BuyItem(Goods goods, long amount) {
+        this.goods = goods;
+        this.amount = amount;
+    }
+
     @Override
     public long getId() {
         return id;
