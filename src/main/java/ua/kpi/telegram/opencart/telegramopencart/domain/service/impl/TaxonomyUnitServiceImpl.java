@@ -7,6 +7,8 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.service.TaxonomyUnitServ
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.CategoryRepository;
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.TaxonomyUnitRepository;
 
+import java.util.List;
+
 @Service
 public class TaxonomyUnitServiceImpl implements TaxonomyUnitService {
     private final TaxonomyUnitRepository taxonomyUnitRepository;
@@ -27,5 +29,10 @@ public class TaxonomyUnitServiceImpl implements TaxonomyUnitService {
         taxonomyUnit.setParentCategory(category);
 
         taxonomyUnitRepository.save(category);
+    }
+
+    @Override
+    public List<TaxonomyUnit> getAll() {
+        return taxonomyUnitRepository.findAll();
     }
 }
