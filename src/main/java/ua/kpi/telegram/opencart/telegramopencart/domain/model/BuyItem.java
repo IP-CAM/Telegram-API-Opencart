@@ -10,7 +10,7 @@ public class BuyItem implements Identified {
     private long id;
 
     @OneToOne
-    private Good good;
+    private Goods goods;
 
     private long amount;
 
@@ -23,12 +23,12 @@ public class BuyItem implements Identified {
         this.id = id;
     }
 
-    public Good getGood() {
-        return good;
+    public Goods getGoods() {
+        return goods;
     }
 
-    public void setGood(Good good) {
-        this.good = good;
+    public void setGoods(Goods goods) {
+        this.goods = goods;
     }
 
     public long getAmount() {

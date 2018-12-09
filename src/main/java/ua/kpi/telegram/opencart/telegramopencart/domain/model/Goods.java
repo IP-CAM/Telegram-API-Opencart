@@ -3,7 +3,7 @@ package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 import javax.persistence.Entity;
 
 @Entity
-public class Good extends TaxonomyUnit {
+public class Goods extends TaxonomyUnit {
     private long price;
 
     public long getPrice() {
