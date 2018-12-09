@@ -1,11 +1,16 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
+import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
 public class Cart implements Identified {
@@ -14,22 +19,26 @@ public class Cart implements Identified {
     private long id;
 
     @OneToMany
-    private List<BuyItem> buyItemList;
+    private List<BuyItem> buyItems = new ArrayList<>();
 
     public void addToCart(BuyItem buyItem) {
-        buyItemList.add(buyItem);
+        buyItems.add(buyItem);
     }
 
     public void addToCart(List<BuyItem> buyItems) {
-        buyItemList.addAll(buyItems);
+        this.buyItems.addAll(buyItems);
     }
 
-    public void clearCart() {
-        buyItemList.clear();
+    public void remove(BuyItem buyItem) {
+        buyItems.remove(buyItem);
     }
 
-    public void removeFromCart(BuyItem buyItem) {
-        buyItemList.remove(buyItem);
+    public void remove(Goods goods) {
+        buyItems = buyItems.stream().filter(buyItem -> !buyItem.getGoods().equals(goods)).collect(toList());
+    }
+
+    public void clear() {
+        buyItems.clear();
     }
 
     @Override
@@ -41,11 +50,11 @@ public class Cart implements Identified {
         this.id = id;
     }
 
-    public List<BuyItem> getBuyItemList() {
-        return buyItemList;
+    public List<BuyItem> getBuyItems() {
+        return buyItems;
     }
 
-    public void setBuyItemList(List<BuyItem> buyItemList) {
-        this.buyItemList = buyItemList;
+    public void setBuyItems(List<BuyItem> buyItems) {
+        this.buyItems = buyItems;
     }
 }
