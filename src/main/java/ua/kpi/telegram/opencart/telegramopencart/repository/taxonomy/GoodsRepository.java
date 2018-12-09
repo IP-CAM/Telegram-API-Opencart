@@ -8,5 +8,5 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 public interface GoodsRepository extends JpaRepository<Goods, Long> {
     Goods findByName(String name);
 
-    boolean deleteByName(String name);
+    Long deleteByName(String name);
 }
