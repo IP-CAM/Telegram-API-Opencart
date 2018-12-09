@@ -4,4 +4,6 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.model.Goods;
 
 public interface GoodsService {
     void addGoods(Goods goods);
+
+    void removeGoods(String name);
 }

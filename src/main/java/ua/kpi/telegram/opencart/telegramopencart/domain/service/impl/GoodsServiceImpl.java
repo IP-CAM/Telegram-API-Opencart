@@ -19,4 +19,9 @@ public class GoodsServiceImpl implements GoodsService {
     public void addGoods(Goods goods) {
         goodsRepository.save(goods);
     }
+
+    @Override
+    public void removeGoods(String name) {
+        goodsRepository.deleteByName(name);
+    }
 }
