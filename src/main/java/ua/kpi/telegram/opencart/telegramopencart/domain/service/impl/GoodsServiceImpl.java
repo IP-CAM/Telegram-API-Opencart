@@ -16,8 +16,14 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public void addGoods(Goods goods) {
-        goodsRepository.save(goods);
+    public Goods update(Goods goods, Long id) {
+        goods.setId(id);
+        return goodsRepository.save(goods);
+    }
+
+    @Override
+    public Goods addGoods(Goods goods) {
+        return goodsRepository.save(goods);
     }
 
     @Override
