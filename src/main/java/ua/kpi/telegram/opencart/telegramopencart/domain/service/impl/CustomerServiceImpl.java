@@ -9,6 +9,7 @@ import ua.kpi.telegram.opencart.telegramopencart.repository.CustomerRepository;
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsRepository;
 
 import java.time.Instant;
+import java.util.List;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -62,5 +63,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void checkout(String login) {
 
+    }
+
+    @Override
+    public List<Goods> getAllCustomerGoods() {
+        return null;
     }
 }

@@ -1,6 +1,9 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.service;
 
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Customer;
+import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
+
+import java.util.List;
 
 public interface CustomerService {
     Customer register(String login, String phone);
@@ -14,4 +17,6 @@ public interface CustomerService {
     void clearCart(String login);
 
     void checkout(String login);
+
+    List<Goods> getAllCustomerGoods();
 }

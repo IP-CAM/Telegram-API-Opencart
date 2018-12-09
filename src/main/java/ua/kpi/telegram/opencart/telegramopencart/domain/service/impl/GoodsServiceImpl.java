@@ -6,7 +6,7 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.GoodsService;
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsRepository;
 
-import java.util.Collection;
+import java.util.List;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -34,7 +34,12 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public Collection<Goods> getAll() {
+    public List<Goods> getAll() {
         return goodsRepository.findAll();
+    }
+
+    @Override
+    public List<Goods> getAllByCategory(String categoryName) {
+        return null;
     }
 }

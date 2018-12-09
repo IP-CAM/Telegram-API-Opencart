@@ -8,4 +8,6 @@ public interface TaxonomyUnitService {
     void changeCategory(String name, String categoryName);
 
     List<TaxonomyUnit> getAll();
+
+    List<TaxonomyUnit> getAllByCategory(String categoryName);
 }

@@ -35,4 +35,9 @@ public class TaxonomyUnitServiceImpl implements TaxonomyUnitService {
     public List<TaxonomyUnit> getAll() {
         return taxonomyUnitRepository.findAll();
     }
+
+    @Override
+    public List<TaxonomyUnit> getAllByCategory(String categoryName) {
+        return null;
+    }
 }

@@ -2,7 +2,7 @@ package ua.kpi.telegram.opencart.telegramopencart.domain.service;
 
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface GoodsService {
     Goods update(Goods goods, Long id);
@@ -11,5 +11,7 @@ public interface GoodsService {
 
     void remove(String name);
 
-    Collection<Goods> getAll();
+    List<Goods> getAll();
+
+    List<Goods> getAllByCategory(String categoryName);
 }
