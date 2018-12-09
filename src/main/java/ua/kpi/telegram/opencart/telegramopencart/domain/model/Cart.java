@@ -25,6 +25,10 @@ public class Cart implements Identified {
         buyItemList.clear();
     }
 
+    public void removeFromCart(BuyItem buyItem) {
+        buyItemList.remove(buyItem);
+    }
+
     @Override
     public long getId() {
         return id;
