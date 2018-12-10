@@ -1,5 +1,7 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+import static org.hibernate.annotations.CascadeType.ALL;
 
 @Entity
 public class Cart implements Identified {
@@ -19,6 +22,7 @@ public class Cart implements Identified {
     private long id;
 
     @OneToMany
+    @Cascade(ALL)
     private List<BuyItem> buyItems = new ArrayList<>();
 
     public void addToCart(BuyItem buyItem) {
