@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Indeoo/telegram-opencart.svg?branch=trunk)](https://travis-ci.org/Indeoo/telegram-opencart)
 # Telegram OpenCart
 
 This project aims to build an open-source platform for building own Telegram-based
@@ -10,9 +11,11 @@ generalized DB schema, integrate Privat24 bot and transactions,
 interactive communication and easy-to-use Admin/Seller functionality via app bot.
 
 ## Prerequisites:
-- Java 10
+- Docker
 
 ## Start up guide:
-1. ./gradlew build
-2. docker build -t telegram-opencart .
-3. docker run telegram-opencart
+```` 
+$ ./gradlew build
+$ docker build -t telegram-opencart .
+$ docker run telegram-opencart
+````
