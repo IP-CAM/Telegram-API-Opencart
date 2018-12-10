@@ -23,14 +23,6 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerServiceTest {
-    private static final String TEST_LOGIN = "testLogin";
-
-    private static final String TEST_GOOD_1 = "testGood1";
-
-    private static final String TEST_GOOD_2 = "testGood2";
-
-    private static final String TEST_GOOD_3 = "testGood3";
-
     @InjectMocks
     private CustomerServiceImpl customerService;
 
@@ -39,6 +31,14 @@ public class CustomerServiceTest {
 
     @Mock
     private GoodsRepository goodsRepository;
+
+    private static final String TEST_LOGIN = "testLogin";
+
+    private static final String TEST_GOOD_1 = "testGood1";
+
+    private static final String TEST_GOOD_2 = "testGood2";
+
+    private static final String TEST_GOOD_3 = "testGood3";
 
     private Customer savedCustomer;
 
