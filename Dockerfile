@@ -1,15 +1,9 @@
-# Version 01
+FROM java:8
 
-FROM openjdk:10.0.2-jdk-slim
+VOLUME /tmp
 
-WORKDIR "/tmp"
+EXPOSE 8080
 
-RUN mkdir -p /tmp/app/
+ADD /build/libs/telegram-opencart-0.0.1-SNAPSHOT.jar "spring-boot-docker-1.0.jar"
 
-WORKDIR "/tmp/app"
-
-COPY app.jar /tmp/app/app.jar
-
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/tmp/app/app.jar"]
-
-EXPOSE 3200
+ENTRYPOINT ["java","-jar","spring-boot-docker-1.0.jar"]
