@@ -47,7 +47,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void removeGoodsFromCart(String login, String goods) {
+    public void removeGoodsFromCart(String login, String goodsName) {
+        Customer customer = customerRepository.findCustomerByLogin(login);
+
+        Goods goods = goodsRepository.findByName(goodsName);
+
+        customer.getCart().remove(goods);
 
     }
 
@@ -65,6 +70,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void checkout(String login) {
+        Customer customer = customerRepository.findCustomerByLogin(login);
+
+        customer.getCart().clear();
 
     }
 

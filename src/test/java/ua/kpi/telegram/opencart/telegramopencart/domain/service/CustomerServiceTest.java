@@ -82,10 +82,10 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void shouldReturTwoAmount() {
+    public void shouldReturnTwoAmount() {
         customerService.reduceAmountOfGoods(TEST_LOGIN, TEST_GOOD_1, 2);
 
-        assertEquals(2, savedCustomer.getCart().getBuyItems().get(0).getAmount());
+        assertEquals(4, savedCustomer.getCart().getBuyItems().get(0).getAmount());
     }
 
     @Test
