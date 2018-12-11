@@ -1,5 +1,8 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.time.Instant;
 import java.util.Objects;
+
+import static org.hibernate.annotations.CascadeType.ALL;
 
 @Entity
 public class Customer {
@@ -19,6 +24,7 @@ public class Customer {
     private String phone;
 
     @OneToOne
+    @Cascade(ALL)
     private Cart cart = new Cart();
 
     private Instant registerDate;

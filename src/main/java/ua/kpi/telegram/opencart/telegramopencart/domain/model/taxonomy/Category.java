@@ -12,7 +12,7 @@ import static org.hibernate.annotations.CascadeType.ALL;
 @Entity
 public class Category extends TaxonomyUnit {
 
-    @OneToMany
+    @OneToMany(mappedBy = "parentCategory")
     @Cascade(ALL)
     private List<TaxonomyUnit> taxonomyUnits = new ArrayList<>();
 
