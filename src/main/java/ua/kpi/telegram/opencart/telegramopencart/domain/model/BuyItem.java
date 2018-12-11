@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.util.Objects;
 
 @Entity
 public class BuyItem implements Identified {
@@ -50,5 +51,29 @@ public class BuyItem implements Identified {
 
     public void setAmount(long amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BuyItem buyItem = (BuyItem) o;
+        return id == buyItem.id &&
+                amount == buyItem.amount &&
+                goods.equals(buyItem.goods);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, goods, amount);
+    }
+
+    @Override
+    public String toString() {
+        return "BuyItem{" +
+                "id=" + id +
+                ", goods=" + goods +
+                ", amount=" + amount +
+                '}';
     }
 }
