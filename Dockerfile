@@ -12,4 +12,6 @@ VOLUME ["/app/logs"]
 
 WORKDIR /app
 
+CMD sh gradlew build
+
 CMD sh gradlew bootRun

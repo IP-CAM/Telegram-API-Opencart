@@ -1,0 +1,35 @@
+version: '3'
+
+volumes:
+  database_data:
+    driver: local
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: example
+      POSTGRES_USER: example
+      POSTGRES_PASSWORD: example
+    ports:
+      - 5432:5432
+    networks:
+      - postgres
+    volumes:
+      - database_data:/var/lib/postgresql/data
+  api:
+    image: telegram-opencart
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - postgres
+    volumes:
+      - ./api:/usr/src/app/
+    links:
+      - db
+networks:
+  postgres:
+    driver: bridge
