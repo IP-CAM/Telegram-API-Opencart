@@ -6,9 +6,9 @@ COPY build.gradle /app/build.gradle
 
 COPY gradle /app/gradle
 
-COPY .gradle /app/.gradle
-
 COPY gradlew /app/gradlew
+
+VOLUME ["/app/logs"]
 
 WORKDIR /app
 
