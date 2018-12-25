@@ -15,7 +15,6 @@ interactive communication and easy-to-use Admin/Seller functionality via app bot
 
 ## Start up guide:
 ```` 
-$ ./gradlew build
 $ docker build -t telegram-opencart .
-$ docker run telegram-opencart
+$ docker run -v telegram-opencart-volume:/app/logs telegram-opencart
 ````
