@@ -6,10 +6,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Cart;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsRepository;
+
+import java.util.List;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
@@ -17,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class CartRepositoryTest {
     @Autowired
@@ -56,6 +60,7 @@ public class CartRepositoryTest {
 
     @Test
     public void shouldReturnTestCart1AndTestCart2OnFindingByTestGoods2() {
+        List<Cart> cartList = cartRepository.findAll();
         assertEquals(asList(TEST_CART_1, TEST_CART_2), cartRepository.findAllByBuyItems_Goods(TEST_GOODS_2));
     }
 }
