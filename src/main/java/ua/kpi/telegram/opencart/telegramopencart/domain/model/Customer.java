@@ -14,7 +14,7 @@ import java.util.Objects;
 import static org.hibernate.annotations.CascadeType.ALL;
 
 @Entity
-public class Customer {
+public class Customer implements Identified {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
