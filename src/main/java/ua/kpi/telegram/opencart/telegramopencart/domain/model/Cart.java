@@ -1,8 +1,8 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
-import org.hibernate.annotations.Cascade;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,17 +16,16 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
-import static org.hibernate.annotations.CascadeType.ALL;
 
 @Entity
 public class Cart implements Identified {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cart_id_sequence")
-    @SequenceGenerator(name = "cart_id_sequence", sequenceName = "cart_id_sequence", allocationSize = 1)    private long id;
+    @SequenceGenerator(name = "cart_id_sequence", sequenceName = "cart_id_sequence", allocationSize = 1)
+    private long id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cart_id")
-    @Cascade(ALL)
     private List<BuyItem> buyItems = new ArrayList<>();
 
     public void addToCart(Goods goods, long amount) {
