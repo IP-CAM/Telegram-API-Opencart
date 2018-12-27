@@ -7,4 +7,6 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Category;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     Category findByName(String name);
+
+    Long deleteByName(String name);
 }
