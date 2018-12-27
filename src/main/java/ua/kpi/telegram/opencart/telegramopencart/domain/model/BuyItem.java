@@ -61,7 +61,6 @@ public class BuyItem implements Identified {
         this.amount -= amount;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

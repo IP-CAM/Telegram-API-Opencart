@@ -1,7 +1,6 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 
 import javax.persistence.Entity;
@@ -13,6 +12,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 import static org.hibernate.annotations.CascadeType.ALL;
@@ -24,7 +24,7 @@ public class Cart implements Identified {
     private long id;
 
     @OneToMany
-    @JoinColumn(name ="cart_id")
+    @JoinColumn(name = "cart_id")
     @Cascade(ALL)
     private List<BuyItem> buyItems = new ArrayList<>();
 
@@ -67,6 +67,10 @@ public class Cart implements Identified {
 
     public void setBuyItems(List<BuyItem> buyItems) {
         this.buyItems = buyItems;
+    }
+
+    public Optional<BuyItem> getBuyItemByGoods(Goods goods) {
+        return buyItems.stream().filter(buyItem -> buyItem.getGoods().equals(goods)).findAny();
     }
 
     @Override
