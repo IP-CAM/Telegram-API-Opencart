@@ -52,6 +52,6 @@ public class CartTest {
     public void shouldReturnOnlyBuyItem1AfterRemovingBuyItem2ByGoods() {
         cart.removeFromCart(goods2);
 
-        assertEquals(new BuyItem(goods1, AMOUNT_THREE), cart.getBuyItems().get(0));
+        assertEquals(new BuyItem(goods1, AMOUNT_TWO), cart.getBuyItems().get(0));
     }
 }

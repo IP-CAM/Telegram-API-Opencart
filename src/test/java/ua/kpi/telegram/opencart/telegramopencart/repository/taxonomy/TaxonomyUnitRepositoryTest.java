@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Category;
@@ -17,6 +18,7 @@ import static org.junit.Assert.assertEquals;
 
 @DataJpaTest
 @RunWith(SpringRunner.class)
+@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class TaxonomyUnitRepositoryTest {
     private static final String TEST_GOODS_NAME_1 = "testGoods1";
 
@@ -81,12 +83,5 @@ public class TaxonomyUnitRepositoryTest {
         TaxonomyUnit taxonomyUnit = taxonomyUnitRepository.findByName(TEST_CATEGORY_NAME_3);
 
         assertEquals(TEST_CATEGORY_3, taxonomyUnit);
-    }
-
-    @Test
-    public void shouldReturnGoods2AndTestCategory3() {
-        List<TaxonomyUnit> taxonomyUnitList = taxonomyUnitRepository.findAllByParentCategory(TEST_CATEGORY_2);
-
-        assertEquals(asList(TEST_GOODS_2, TEST_CATEGORY_NAME_3), taxonomyUnitList);
     }
 }

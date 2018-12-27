@@ -85,7 +85,7 @@ public class CustomerServiceTest {
     public void shouldReturnTwoAmount() {
         customerService.removeFromCart(TEST_LOGIN, TEST_GOOD_1, 2);
 
-        assertEquals(4, savedCustomer.getCart().getBuyItems().get(0).getAmount());
+        assertEquals(2, savedCustomer.getCart().getBuyItems().get(0).getAmount());
     }
 
     @Test
