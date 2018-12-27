@@ -6,3 +6,6 @@ env:
 
 before_install:
   - docker build -t telegram-opencart .
+
+install:
+  - docker-compose up
