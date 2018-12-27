@@ -9,13 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import java.net.URL;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class TaxonomyUnit implements Identified {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "taxonomyunit_id_sequence")
+    @SequenceGenerator(name = "taxonomyunit_id_sequence", sequenceName = "taxonomyunit_id_sequence", allocationSize = 1)
     private long id;
 
     @ManyToOne

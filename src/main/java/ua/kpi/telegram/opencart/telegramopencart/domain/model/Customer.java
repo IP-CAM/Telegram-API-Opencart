@@ -1,13 +1,13 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
 import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -16,8 +16,8 @@ import static org.hibernate.annotations.CascadeType.ALL;
 @Entity
 public class Customer implements Identified {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
+    @SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence", allocationSize = 1)    private long id;
 
     private String login;
 

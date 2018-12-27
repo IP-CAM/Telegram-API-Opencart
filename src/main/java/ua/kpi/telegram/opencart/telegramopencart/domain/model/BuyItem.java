@@ -7,12 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import java.util.Objects;
 
 @Entity
 public class BuyItem implements Identified {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "buyitem_id_sequence")
+    @SequenceGenerator(name = "buyitem_id_sequence", sequenceName = "buyitem_id_sequence", allocationSize = 1)
     private long id;
 
     @ManyToOne
