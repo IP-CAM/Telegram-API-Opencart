@@ -6,14 +6,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Category;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.TaxonomyUnit;
 
-import java.util.List;
-
-import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
 @DataJpaTest
@@ -43,6 +41,9 @@ public class TaxonomyUnitRepositoryTest {
     @Autowired
     private TaxonomyUnitRepository taxonomyUnitRepository;
 
+    @Autowired
+    private TestEntityManager testEntityManager;
+
     @Before
     public void setUp() {
         TEST_CATEGORY_1 = new Category();
@@ -64,11 +65,11 @@ public class TaxonomyUnitRepositoryTest {
         TEST_CATEGORY_2.addToCategory(TEST_GOODS_1);
         TEST_CATEGORY_3.addToCategory(TEST_CATEGORY_3);
 
-        taxonomyUnitRepository.save(TEST_CATEGORY_1);
-        taxonomyUnitRepository.save(TEST_CATEGORY_2);
-        taxonomyUnitRepository.save(TEST_CATEGORY_3);
-        taxonomyUnitRepository.save(TEST_GOODS_1);
-        taxonomyUnitRepository.save(TEST_GOODS_2);
+        testEntityManager.persist(TEST_CATEGORY_1);
+        testEntityManager.persist(TEST_CATEGORY_2);
+        testEntityManager.persist(TEST_CATEGORY_3);
+        testEntityManager.persist(TEST_GOODS_1);
+        testEntityManager.persist(TEST_GOODS_2);
     }
 
     @Test
