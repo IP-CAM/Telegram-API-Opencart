@@ -73,6 +73,16 @@ public class Cart implements Identified {
         return buyItems.stream().filter(buyItem -> buyItem.getGoods().equals(goods)).findAny();
     }
 
+    public boolean isGoodsPresentInCart(Goods goods) {
+        return getGoods().contains(goods);
+    }
+
+    private List<Goods> getGoods() {
+        return buyItems.stream()
+                .map(BuyItem::getGoods)
+                .collect(toList());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
