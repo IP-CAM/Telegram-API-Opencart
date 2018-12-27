@@ -5,7 +5,7 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.TaxonomyU
 import java.util.List;
 
 public interface TaxonomyUnitService {
-    void changeCategory(String name, String categoryName);
+    void changeCategory(String unitName, String categoryName);
 
     List<TaxonomyUnit> getAll();
 

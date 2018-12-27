@@ -22,8 +22,8 @@ public class TaxonomyUnitServiceImpl implements TaxonomyUnitService {
     }
 
     @Override
-    public void changeCategory(String name, String categoryName) {
-        TaxonomyUnit taxonomyUnit = taxonomyUnitRepository.findByName(name);
+    public void changeCategory(String unitName, String categoryName) {
+        TaxonomyUnit taxonomyUnit = taxonomyUnitRepository.findByName(unitName);
         Category category = categoryRepository.findByName(categoryName);
 
         taxonomyUnit.setParentCategory(category);
