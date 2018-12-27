@@ -6,7 +6,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import ua.kpi.telegram.opencart.telegramopencart.domain.model.BuyItem;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Customer;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.impl.CustomerServiceImpl;
@@ -15,7 +14,6 @@ import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsReposi
 
 import java.time.Instant;
 
-import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -57,7 +55,6 @@ public class CustomerServiceTest {
         when(customerRepository.findCustomerByLogin(any(String.class))).thenReturn(savedCustomer);
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
         when(goodsRepository.findByName(any(String.class))).thenReturn(savedGoods1);
-        when(goodsRepository.findAll()).thenReturn(asList(savedGoods1, savedGoods2));
     }
 
     @Test
