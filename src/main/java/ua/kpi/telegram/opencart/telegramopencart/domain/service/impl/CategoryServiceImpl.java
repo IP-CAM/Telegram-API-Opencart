@@ -22,4 +22,18 @@ public class CategoryServiceImpl implements CategoryService {
     public void remove(String categoryName) {
         categoryRepository.deleteByName(categoryName);
     }
+
+    @Override
+    public void update(String name, Category category) {
+        long id = categoryRepository.findByName(name).getId();
+
+        category.setId(id);
+
+        categoryRepository.save(category);
+    }
+
+    @Override
+    public Category getRootCategory() {
+        return categoryRepository.getOne(1L);
+    }
 }

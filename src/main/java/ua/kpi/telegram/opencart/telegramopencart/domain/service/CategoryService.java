@@ -6,4 +6,8 @@ public interface CategoryService {
     Category add(String name, String description);
 
     void remove(String categoryName);
+
+    void update(String name, Category category);
+
+    Category getRootCategory();
 }
