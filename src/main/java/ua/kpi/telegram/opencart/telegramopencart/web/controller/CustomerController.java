@@ -27,25 +27,23 @@ public class CustomerController {
         customerService.register(login, phone);
     }
 
-    @PostMapping("/customer/{name}/cart/goods/{goodsName}")
+    @PostMapping("/customer/{name}/cart/goods/{goodsname}")
     public void addToCart(@PathVariable("name") String customerName,
-                          @RequestParam("goodsName") String goodsName,
+                          @RequestParam("goodsname") String goodsName,
                           @RequestParam("amount") long amount) {
         customerService.addToCart(customerName, goodsName, amount);
     }
 
-    @PostMapping("/customer/{name}/cart/goods/{goodsName}")
+    @DeleteMapping("/customer/{name}/cart/goods/{goodsname}")
     public void removeFromCart(@PathVariable("name") String customerName,
-                          @RequestParam("goodsName") String goodsName,
-                          @RequestParam("amount") long amount) {
-        customerService.removeFromCart(customerName, goodsName, amount);
-    }
+                               @RequestParam("goodsname") String goodsName,
+                               @RequestParam("amount") long amount) {
+        if (amount == 0) {
+            customerService.removeGoodsFromCart(customerName, goodsName);
 
-    @DeleteMapping("/customer/{name}/cart/goods/{goodsName}")
-    public void removeGoodsFromCart(@PathVariable("name") String customerName,
-                          @RequestParam("goodsName") String goodsName,
-                          @RequestParam("amount") long amount) {
-        customerService.removeGoodsFromCart(customerName, goodsName);
+        } else {
+            customerService.removeFromCart(customerName, goodsName, amount);
+        }
     }
 
     @GetMapping("/customer/{name}/cart/goods")
