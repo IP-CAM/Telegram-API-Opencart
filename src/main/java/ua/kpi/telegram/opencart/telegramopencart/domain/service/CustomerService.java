@@ -11,9 +11,9 @@ public interface CustomerService {
 
     void addToCart(String login, String goods, long amount);
 
-    void removeGoodsFromCart(String login, String goods);
+    void removeFromCart(String login, String goodName, long amount);
 
-    boolean reduceAmountOfGoods(String login, String goods, long amount);
+    void removeGoodsFromCart(String login, String goods);
 
     void clearCart(String login);
 

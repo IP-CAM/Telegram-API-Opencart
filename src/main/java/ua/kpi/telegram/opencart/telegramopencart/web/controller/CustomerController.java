@@ -27,11 +27,25 @@ public class CustomerController {
         customerService.register(login, phone);
     }
 
-    @PutMapping("/customer/{name}/cart/goods/{goodsName}")
+    @PostMapping("/customer/{name}/cart/goods/{goodsName}")
     public void addToCart(@PathVariable("name") String customerName,
                           @RequestParam("goodsName") String goodsName,
                           @RequestParam("amount") long amount) {
         customerService.addToCart(customerName, goodsName, amount);
+    }
+
+    @PostMapping("/customer/{name}/cart/goods/{goodsName}")
+    public void removeFromCart(@PathVariable("name") String customerName,
+                          @RequestParam("goodsName") String goodsName,
+                          @RequestParam("amount") long amount) {
+        customerService.removeFromCart(customerName, goodsName, amount);
+    }
+
+    @DeleteMapping("/customer/{name}/cart/goods/{goodsName}")
+    public void removeGoodsFromCart(@PathVariable("name") String customerName,
+                          @RequestParam("goodsName") String goodsName,
+                          @RequestParam("amount") long amount) {
+        customerService.removeGoodsFromCart(customerName, goodsName);
     }
 
     @GetMapping("/customer/{name}/cart/goods")
@@ -47,12 +61,5 @@ public class CustomerController {
     @DeleteMapping("/customer/{name}/cart/goods")
     public void clearACart(@PathVariable("name") String login) {
         customerService.clearCart(login);
-    }
-
-    @PostMapping("/customer/{name}/cart/goods/{goodsName}")
-    public boolean reduceAmountOfGoods(@PathVariable("name") String login,
-                                       @PathVariable("goodsName") String goodsName,
-                                       @RequestParam("amount") long amount) {
-        return customerService.reduceAmountOfGoods(login, goodsName, amount);
     }
 }

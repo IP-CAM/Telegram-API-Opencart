@@ -11,7 +11,6 @@ import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsReposi
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -43,8 +42,17 @@ public class CustomerServiceImpl implements CustomerService {
         Goods goods = goodsRepository.findByName(goodName);
         Customer customer = customerRepository.findCustomerByLogin(login);
 
-        BuyItem buyItem = new BuyItem(goods, amount);
-        customer.getCart().addToCart(buyItem);
+        customer.getCart().addToCart(goods, amount);
+
+        customerRepository.save(customer);
+    }
+
+    @Override
+    public void removeFromCart(String login, String goodName, long amount) {
+        Goods goods = goodsRepository.findByName(goodName);
+        Customer customer = customerRepository.findCustomerByLogin(login);
+
+        customer.getCart().removeFromCart(goods, amount);
 
         customerRepository.save(customer);
     }
@@ -55,31 +63,9 @@ public class CustomerServiceImpl implements CustomerService {
 
         Goods goods = goodsRepository.findByName(goodsName);
 
-        customer.getCart().remove(goods);
+        customer.getCart().removeFromCart(goods);
 
-    }
-
-    @Override
-    public boolean reduceAmountOfGoods(String login, String goodsName, long amount) {
-        Customer customer = customerRepository.findCustomerByLogin(login);
-        Goods goods = goodsRepository.findByName(goodsName);
-
-        Optional<BuyItem> buyItemOptional = customer.getCart()
-                .getBuyItems()
-                .stream()
-                .filter(buyItem -> buyItem.getGoods().equals(goods))
-                .findAny();
-
-        if (buyItemOptional.isPresent()) {
-            BuyItem buyItem = buyItemOptional.get();
-
-            if (buyItem.getAmount() > amount) {
-                buyItem.reduceAmount(amount);
-                return true;
-            }
-        }
-
-        return false;
+        customerRepository.save(customer);
     }
 
     @Override

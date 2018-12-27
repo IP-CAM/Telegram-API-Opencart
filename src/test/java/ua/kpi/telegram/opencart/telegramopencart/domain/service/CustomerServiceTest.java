@@ -51,8 +51,8 @@ public class CustomerServiceTest {
         savedCustomer = new Customer(TEST_LOGIN, "testPhone");
         savedCustomer.setRegisterDate(Instant.now());
 
-        savedCustomer.getCart().addToCart(new BuyItem(savedGoods1, 4));
-        savedCustomer.getCart().addToCart(new BuyItem(savedGoods2, 5));
+        savedCustomer.getCart().addToCart(savedGoods1, 4);
+        savedCustomer.getCart().addToCart(savedGoods2, 5);
 
         when(customerRepository.findCustomerByLogin(any(String.class))).thenReturn(savedCustomer);
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
@@ -83,7 +83,7 @@ public class CustomerServiceTest {
 
     @Test
     public void shouldReturnTwoAmount() {
-        customerService.reduceAmountOfGoods(TEST_LOGIN, TEST_GOOD_1, 2);
+        customerService.removeFromCart(TEST_LOGIN, TEST_GOOD_1, 2);
 
         assertEquals(4, savedCustomer.getCart().getBuyItems().get(0).getAmount());
     }

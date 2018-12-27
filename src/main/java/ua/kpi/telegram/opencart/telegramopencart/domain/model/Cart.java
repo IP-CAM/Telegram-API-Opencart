@@ -28,20 +28,40 @@ public class Cart implements Identified {
     @Cascade(ALL)
     private List<BuyItem> buyItems = new ArrayList<>();
 
-    public void addToCart(BuyItem buyItem) {
-        buyItems.add(buyItem);
+    public void addToCart(Goods goods, long amount) {
+        if (isGoodsPresentInCart(goods)) {
+            getBuyItemByGoods(goods).ifPresent(buyItem -> buyItem.addAmount(amount));
+        } else {
+            buyItems.add(new BuyItem(goods, amount));
+        }
     }
 
-    public void addToCart(List<BuyItem> buyItems) {
-        this.buyItems.addAll(buyItems);
+    public boolean removeFromCart(Goods goods, long amount) {
+        Optional<BuyItem> buyItemOptional = getBuyItemByGoods(goods);
+
+        if (buyItemOptional.isPresent()) {
+            BuyItem buyItem = buyItemOptional.get();
+
+            if (buyItem.getAmount() > amount) {
+                buyItem.reduceAmount(amount);
+                return true;
+            } else if (buyItem.getAmount() == amount) {
+                return removeFromCart(goods);
+            }
+        }
+
+        return false;
     }
 
-    public void remove(BuyItem buyItem) {
-        buyItems.remove(buyItem);
-    }
-
-    public void remove(Goods goods) {
-        buyItems = buyItems.stream().filter(buyItem -> !buyItem.getGoods().equals(goods)).collect(toList());
+    public boolean removeFromCart(Goods goods) {
+        if (isGoodsPresentInCart(goods)) {
+            this.buyItems = buyItems.stream()
+                    .filter(buyItem -> !buyItem.getGoods().equals(goods))
+                    .collect(toList());
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void clear() {

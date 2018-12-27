@@ -8,11 +8,11 @@ import static org.junit.Assert.assertEquals;
 
 public class CartTest {
 
+    private static final int AMOUNT_TWO = 2;
+
+    private static final int AMOUNT_THREE = 3;
+
     private Cart cart;
-
-    private BuyItem buyItem1;
-
-    private BuyItem buyItem2;
 
     private Goods goods1;
 
@@ -23,13 +23,10 @@ public class CartTest {
         goods1 = new Goods("TestGood1", "TestDesc1", 123);
         goods2 = new Goods("TestGood2", "TestDesc2", 123);
 
-        buyItem1 = new BuyItem(goods1, 2);
-        buyItem2 = new BuyItem(goods2, 3);
-
         cart = new Cart();
 
-        cart.addToCart(buyItem1);
-        cart.addToCart(buyItem2);
+        cart.addToCart(goods1, AMOUNT_TWO);
+        cart.addToCart(goods2, AMOUNT_THREE);
     }
 
     @Test
@@ -46,15 +43,15 @@ public class CartTest {
 
     @Test
     public void shouldReturnOnlyBuyItem2AfterRemovingBuyItem1() {
-        cart.remove(buyItem1);
+        cart.removeFromCart(goods1, AMOUNT_TWO);
 
-        assertEquals(buyItem2, cart.getBuyItems().get(0));
+        assertEquals(new BuyItem(goods2, AMOUNT_THREE), cart.getBuyItems().get(0));
     }
 
     @Test
     public void shouldReturnOnlyBuyItem1AfterRemovingBuyItem2ByGoods() {
-        cart.remove(goods2);
+        cart.removeFromCart(goods2);
 
-        assertEquals(buyItem1, cart.getBuyItems().get(0));
+        assertEquals(new BuyItem(goods1, AMOUNT_THREE), cart.getBuyItems().get(0));
     }
 }

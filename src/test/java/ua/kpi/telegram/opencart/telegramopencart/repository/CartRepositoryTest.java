@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import ua.kpi.telegram.opencart.telegramopencart.domain.model.BuyItem;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Cart;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsRepository;
@@ -44,12 +43,9 @@ public class CartRepositoryTest {
         goodsRepository.saveAndFlush(TEST_GOODS_1);
         goodsRepository.saveAndFlush(TEST_GOODS_2);
 
-        BuyItem testBuyItem1 = new BuyItem(TEST_GOODS_1, 2);
-        BuyItem testBuyItem2 = new BuyItem(TEST_GOODS_2, 5);
-
-        TEST_CART_1.addToCart(testBuyItem1);
-        TEST_CART_1.addToCart(testBuyItem2);
-        TEST_CART_2.addToCart(testBuyItem2);
+        TEST_CART_1.addToCart(TEST_GOODS_1, 2);
+        TEST_CART_1.addToCart(TEST_GOODS_2, 5);
+        TEST_CART_2.addToCart(TEST_GOODS_2, 5);
 
         cartRepository.saveAndFlush(TEST_CART_1);
         cartRepository.saveAndFlush(TEST_CART_2);
