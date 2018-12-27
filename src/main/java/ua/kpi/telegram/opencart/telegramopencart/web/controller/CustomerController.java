@@ -57,7 +57,7 @@ public class CustomerController {
     }
 
     @DeleteMapping("/customer/{name}/cart/goods")
-    public void clearACart(@PathVariable("name") String login) {
+    public void clearCart(@PathVariable("name") String login) {
         customerService.clearCart(login);
     }
 }
