@@ -1,5 +1,6 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.service;
 
+import ua.kpi.telegram.opencart.telegramopencart.domain.model.Cart;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Customer;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 
@@ -12,11 +13,13 @@ public interface CustomerService {
 
     void removeGoodsFromCart(String login, String goods);
 
-    void reduceAmountOfGoods(String login, String goods, long amount);
+    boolean reduceAmountOfGoods(String login, String goods, long amount);
 
     void clearCart(String login);
 
     void checkout(String login);
 
-    List<Goods> getAllCustomerGoods();
+    Cart getCart(String login);
+
+    List<Goods> getAllCustomerGoods(String login);
 }

@@ -11,6 +11,9 @@ import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsReposi
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -57,8 +60,26 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void reduceAmountOfGoods(String login, String goods, long amount) {
+    public boolean reduceAmountOfGoods(String login, String goodsName, long amount) {
+        Customer customer = customerRepository.findCustomerByLogin(login);
+        Goods goods = goodsRepository.findByName(goodsName);
 
+        Optional<BuyItem> buyItemOptional = customer.getCart()
+                .getBuyItems()
+                .stream()
+                .filter(buyItem -> buyItem.getGoods().equals(goods))
+                .findAny();
+
+        if (buyItemOptional.isPresent()) {
+            BuyItem buyItem = buyItemOptional.get();
+
+            if (buyItem.getAmount() > amount) {
+                buyItem.reduceAmount(amount);
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -77,7 +98,15 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<Goods> getAllCustomerGoods() {
-        return goodsRepository.findAll();
+    public Cart getCart(String login) {
+        return customerRepository.findCustomerByLogin(login).getCart();
+    }
+
+    @Override
+    public List<Goods> getAllCustomerGoods(String login) {
+        return getCart(login).getBuyItems()
+                .stream()
+                .map(BuyItem::getGoods)
+                .collect(toList());
     }
 }
