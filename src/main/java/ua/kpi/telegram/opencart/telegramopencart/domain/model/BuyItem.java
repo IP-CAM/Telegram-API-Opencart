@@ -53,6 +53,15 @@ public class BuyItem implements Identified {
         this.amount = amount;
     }
 
+    public void addAmount(long amount) {
+        this.amount += amount;
+    }
+
+    public void reduceAmount(long amount) {
+        this.amount -= amount;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
