@@ -5,11 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Cart;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.CustomerService;
+import ua.kpi.telegram.opencart.telegramopencart.web.dto.CustomerDto;
 
 import java.util.List;
 
@@ -22,9 +24,8 @@ public class CustomerController {
     }
 
     @PutMapping("/customer")
-    public void registerCustomer(@RequestParam("login") String login,
-                                 @RequestParam("phone") String phone) {
-        customerService.register(login, phone);
+    public void registerCustomer(@RequestBody CustomerDto customerDto) {
+        customerService.register(customerDto);
     }
 
     @PostMapping("/customer/{name}/cart/goods/{goodsname}")

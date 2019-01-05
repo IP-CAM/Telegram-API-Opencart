@@ -2,12 +2,10 @@ package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
 import org.hibernate.annotations.Cascade;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -16,12 +14,21 @@ import static org.hibernate.annotations.CascadeType.ALL;
 @Entity
 public class Customer implements Identified {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
-    @SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence", allocationSize = 1)    private long id;
+    private long id;
 
-    private String login;
+    @Column(name = "is_bot")
+    private boolean isBot;
 
-    private String phone;
+    private String username;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "language_code")
+    private String languageCode;
 
     @OneToOne
     @Cascade(ALL)
@@ -32,11 +39,7 @@ public class Customer implements Identified {
     public Customer() {
     }
 
-    public Customer(String login, String phone) {
-        this.login = login;
-        this.phone = phone;
-    }
-
+    @Override
     public long getId() {
         return id;
     }
@@ -45,20 +48,44 @@ public class Customer implements Identified {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public boolean isBot() {
+        return isBot;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setBot(boolean bot) {
+        isBot = bot;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLanguageCode() {
+        return languageCode;
+    }
+
+    public void setLanguageCode(String languageCode) {
+        this.languageCode = languageCode;
     }
 
     public Cart getCart() {
@@ -83,14 +110,17 @@ public class Customer implements Identified {
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
         return id == customer.id &&
-                Objects.equals(login, customer.login) &&
-                Objects.equals(phone, customer.phone) &&
+                isBot == customer.isBot &&
+                Objects.equals(username, customer.username) &&
+                Objects.equals(firstName, customer.firstName) &&
+                Objects.equals(lastName, customer.lastName) &&
+                Objects.equals(languageCode, customer.languageCode) &&
                 Objects.equals(cart, customer.cart) &&
                 Objects.equals(registerDate, customer.registerDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, phone, cart, registerDate);
+        return Objects.hash(id, isBot, username, firstName, lastName, languageCode, cart, registerDate);
     }
 }

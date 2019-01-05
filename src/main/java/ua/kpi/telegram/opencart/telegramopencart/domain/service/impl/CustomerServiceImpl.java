@@ -8,6 +8,7 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.CustomerService;
 import ua.kpi.telegram.opencart.telegramopencart.repository.CustomerRepository;
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsRepository;
+import ua.kpi.telegram.opencart.telegramopencart.web.dto.CustomerDto;
 
 import java.time.Instant;
 import java.util.List;
@@ -27,14 +28,18 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer register(String login, String phone) {
+    public void register(CustomerDto customerDto) {
         Customer customer = new Customer();
 
-        customer.setLogin(login);
-        customer.setPhone(phone);
+        customer.setId(customerDto.getId());
+        customer.setUsername(customerDto.getUsername());
+        customer.setFirstName(customerDto.getFirstName());
+        customer.setLastName(customerDto.getLastName());
+        customer.setBot(customerDto.isBot());
+        customer.setLanguageCode(customerDto.getLanguageCode());
         customer.setRegisterDate(Instant.now());
 
-        return customerRepository.save(customer);
+        customerRepository.save(customer);
     }
 
     @Override
