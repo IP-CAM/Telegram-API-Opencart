@@ -46,7 +46,7 @@ public class TaxonomyUnitServiceImpl implements TaxonomyUnitService {
     }
 
     @Override
-    public List<TaxonomyUnit> getAllByCategory(String categoryName) {
+    public List<TaxonomyUnit> getAllByCategory(long categoryId) {
         return null;
     }
 }

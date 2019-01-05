@@ -9,5 +9,5 @@ public interface TaxonomyUnitService {
 
     List<TaxonomyUnit> getAll();
 
-    List<TaxonomyUnit> getAllByCategory(String categoryName);
+    List<TaxonomyUnit> getAllByCategory(long categoryId);
 }

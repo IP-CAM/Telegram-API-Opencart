@@ -29,8 +29,8 @@ public class TaxonomyUnitController {
         return taxonomyUnitService.getAll();
     }
 
-    @GetMapping("/taxonomyunit/{category}")
-    public List<TaxonomyUnit> getAllByCategory(@PathVariable("category") String category) {
-        return taxonomyUnitService.getAllByCategory(category);
+    @GetMapping("/taxonomyunit/{categoryId}")
+    public List<TaxonomyUnit> getAllByCategory(@PathVariable("categoryId") long categoryId) {
+        return taxonomyUnitService.getAllByCategory(categoryId);
     }
 }
