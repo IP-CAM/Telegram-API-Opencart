@@ -1,5 +1,6 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Identified;
 
 import javax.persistence.Entity;
@@ -24,6 +25,7 @@ public abstract class TaxonomyUnit implements Identified {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="parent_category_id")
+    @JsonBackReference
     private Category parentCategory;
 
     private String name;
