@@ -1,6 +1,7 @@
 package ua.kpi.telegram.opencart.telegramopencart.web.controller;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -35,7 +36,7 @@ public class CategoryController {
         categoryService.update(name, category);
     }
 
-    @DeleteMapping("/category/root")
+    @GetMapping("/category/root")
     public Category getRoot() {
         return categoryService.getRootCategory();
     }
