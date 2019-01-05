@@ -34,6 +34,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getRootCategory() {
-        return categoryRepository.getOne(1L);
+        return categoryRepository.findById(1L);
     }
 }
