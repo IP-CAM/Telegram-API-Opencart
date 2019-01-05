@@ -28,11 +28,11 @@ public class TaxonomyUnitServiceImpl implements TaxonomyUnitService {
     }
 
     @Override
-    public void changeCategory(String unitName, String categoryName) {
-        TaxonomyUnit taxonomyUnit = taxonomyUnitRepository.findByName(unitName);
-        Category category = categoryRepository.findByName(categoryName);
+    public void changeCategory(long taxonomyUnitId, long categoryId) {
+        TaxonomyUnit taxonomyUnit = taxonomyUnitRepository.findById(taxonomyUnitId);
+        Category category = categoryRepository.findById(categoryId);
 
-        logger.info("Changing " + unitName + "to Category with name " + categoryName);
+        logger.info("Changing " + taxonomyUnitId + "to Category with name " + categoryId);
         logger.info("" + category);
         logger.info("" + taxonomyUnit);
         category.addToCategory(taxonomyUnit);

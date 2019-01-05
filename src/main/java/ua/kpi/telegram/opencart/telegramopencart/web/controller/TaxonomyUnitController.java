@@ -18,10 +18,10 @@ public class TaxonomyUnitController {
         this.taxonomyUnitService = taxonomyUnitService;
     }
 
-    @PostMapping("/taxonomyunit/{name}")
-    public void changeCategory(@PathVariable("name") String unitName,
-                               @RequestParam("category") String categoryName) {
-        taxonomyUnitService.changeCategory(unitName, categoryName);
+    @PostMapping("/taxonomyunit/{taxonomy_unit_id}")
+    public void changeCategory(@PathVariable("taxonomy_unit_id") long taxonomyUnitId,
+                               @RequestParam("categoryId") long categoryId) {
+        taxonomyUnitService.changeCategory(taxonomyUnitId, categoryId);
     }
 
     @GetMapping("/taxonomyunit")

@@ -14,7 +14,6 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.service.GoodsService;
 
 import java.util.List;
 
-import static java.lang.Long.parseLong;
 import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
@@ -33,10 +32,11 @@ public class GoodsController {
         return goodsService.getAll();
     }
 
-    @GetMapping("/goods/{category}")
-    public List<Goods> findByCategory(@PathVariable("category") String category) {
+    @GetMapping("/goods/{categoryId}")
+    public List<Goods> findByCategory(@PathVariable("categoryId") long categoryId) {
         logger.info("Finding all goods by category");
-        return goodsService.getAllByCategory(category);
+
+        return goodsService.getAllByCategory(categoryId);
     }
 
     @PutMapping("/goods")
@@ -46,12 +46,12 @@ public class GoodsController {
 
     @PostMapping("/goods")
     public Goods updateGoods(@RequestBody Goods goods,
-                             @RequestParam("id") String id) {
-        return goodsService.update(goods, parseLong(id));
+                             @RequestParam("id") long goodsId) {
+        return goodsService.update(goods, goodsId);
     }
 
     @DeleteMapping("/goods")
-    public void deleteGoods(@RequestParam("name") String name) {
-        goodsService.remove(name);
+    public void deleteGoods(@RequestParam("id") long goodsId) {
+        goodsService.remove(goodsId);
     }
 }

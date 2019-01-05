@@ -12,4 +12,6 @@ public interface TaxonomyUnitRepository extends JpaRepository<TaxonomyUnit, Long
     List<TaxonomyUnit> findAllByParentCategory(Category category);
 
     TaxonomyUnit findByName(String name);
+
+    TaxonomyUnit findById(long id);
 }
