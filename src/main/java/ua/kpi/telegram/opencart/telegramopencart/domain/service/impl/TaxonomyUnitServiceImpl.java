@@ -33,7 +33,8 @@ public class TaxonomyUnitServiceImpl implements TaxonomyUnitService {
         Category category = categoryRepository.findByName(categoryName);
 
         logger.info("Changing " + unitName + "to Category with name " + categoryName);
-
+        logger.info("" + category);
+        logger.info("" + taxonomyUnit);
         category.addToCategory(taxonomyUnit);
 
         taxonomyUnitRepository.save(category);
