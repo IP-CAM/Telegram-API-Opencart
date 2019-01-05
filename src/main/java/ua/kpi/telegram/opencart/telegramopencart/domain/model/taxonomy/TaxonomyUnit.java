@@ -3,6 +3,7 @@ package ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Identified;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public abstract class TaxonomyUnit implements Identified {
     @SequenceGenerator(name = "taxonomyunit_id_sequence", sequenceName = "taxonomyunit_id_sequence", allocationSize = 1)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="parent_category_id")
     private Category parentCategory;
 
