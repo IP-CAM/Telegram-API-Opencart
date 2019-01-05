@@ -30,8 +30,7 @@ public class CustomerRepositoryTest {
 
     @Before
     public void setUp() {
-        savedCustomer.setLogin(TEST_LOGIN);
-        savedCustomer.setPhone(TEST_PHONE);
+        savedCustomer.setUsername(TEST_LOGIN);
 
         testEntityManager.persist(savedCustomer);
     }

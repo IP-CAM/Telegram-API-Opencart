@@ -1,13 +1,13 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.service;
 
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Cart;
-import ua.kpi.telegram.opencart.telegramopencart.domain.model.Customer;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
+import ua.kpi.telegram.opencart.telegramopencart.web.dto.CustomerDto;
 
 import java.util.List;
 
 public interface CustomerService {
-    Customer register(String login, String phone);
+    void register(CustomerDto customerDto);
 
     void addToCart(String login, String goods, long amount);
 
