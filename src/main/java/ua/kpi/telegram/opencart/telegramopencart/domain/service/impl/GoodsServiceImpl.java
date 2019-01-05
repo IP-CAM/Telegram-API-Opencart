@@ -29,8 +29,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public void remove(String name) {
-        goodsRepository.deleteByName(name);
+    public void remove(long goodsId) {
+        goodsRepository.deleteById(goodsId);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Goods> getAllByCategory(String categoryName) {
+    public List<Goods> getAllByCategory(long categoryId) {
         return null;
     }
 }

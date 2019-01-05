@@ -9,9 +9,9 @@ public interface GoodsService {
 
     Goods add(Goods goods);
 
-    void remove(String name);
+    void remove(long goodsId);
 
     List<Goods> getAll();
 
-    List<Goods> getAllByCategory(String categoryName);
+    List<Goods> getAllByCategory(long categoryId);
 }

@@ -26,14 +26,14 @@ public class CategoryController {
     }
 
     @DeleteMapping("/category")
-    public void deleteCategory(@RequestParam("name") String name) {
-        categoryService.remove(name);
+    public void deleteCategory(@RequestParam("id") long categoryId) {
+        categoryService.remove(categoryId);
     }
 
-    @PostMapping("/category/{categoryName}")
-    public void updateCategory(@PathVariable("categoryName") String name,
+    @PostMapping("/category/{categoryId}")
+    public void updateCategory(@PathVariable("categoryId") long categoryId,
                                @RequestBody Category category) {
-        categoryService.update(name, category);
+        categoryService.update(categoryId, category);
     }
 
     @GetMapping("/category/root")

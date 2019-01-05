@@ -19,13 +19,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void remove(String categoryName) {
-        categoryRepository.deleteByName(categoryName);
+    public void remove(long categoryId) {
+        categoryRepository.deleteById(categoryId);
     }
 
     @Override
-    public void update(String name, Category category) {
-        long id = categoryRepository.findByName(name).getId();
+    public void update(long categoryId, Category category) {
+        long id = categoryRepository.findById(categoryId).getId();
 
         category.setId(id);
 
