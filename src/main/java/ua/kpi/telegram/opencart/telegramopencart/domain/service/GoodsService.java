@@ -13,5 +13,7 @@ public interface GoodsService {
 
     List<Goods> getAll();
 
-    List<Goods> getAllByCategory(long categoryId);
+    Goods findById(long categoryId);
+
+    List<Goods> findAllByCategoryId(long parentCategoryId);
 }
