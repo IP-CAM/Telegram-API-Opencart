@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import java.net.URL;
@@ -21,6 +22,7 @@ public abstract class TaxonomyUnit implements Identified {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name="parent_category_id")
     private Category parentCategory;
 
     private String name;
