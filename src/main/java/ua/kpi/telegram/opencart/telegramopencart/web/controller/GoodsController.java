@@ -32,11 +32,18 @@ public class GoodsController {
         return goodsService.getAll();
     }
 
-    @GetMapping("/goods/{categoryId}")
+    @GetMapping("/goods/category/{categoryId}")
     public List<Goods> findByCategory(@PathVariable("categoryId") long categoryId) {
         logger.info("Finding all goods by category");
 
-        return goodsService.getAllByCategory(categoryId);
+        return goodsService.findAllByCategoryId(categoryId);
+    }
+
+    @GetMapping("/goods/{goodsId}")
+    public Goods findById(@PathVariable("goodsId") long goodsId) {
+        logger.info("Finding all goods by category");
+
+        return goodsService.findById(goodsId);
     }
 
     @PutMapping("/goods")

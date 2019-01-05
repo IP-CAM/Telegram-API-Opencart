@@ -39,7 +39,12 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Goods> getAllByCategory(long categoryId) {
-        return null;
+    public Goods findById(long categoryId) {
+        return goodsRepository.findById(categoryId);
+    }
+
+    @Override
+    public List<Goods> findAllByCategoryId(long parentCategoryId) {
+        return goodsRepository.findAllByParentCategory_Id(parentCategoryId);
     }
 }
