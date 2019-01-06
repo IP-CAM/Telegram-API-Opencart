@@ -37,14 +37,7 @@ public class CustomerRepositoryTest {
 
     @Test
     public void shouldReturnCorrectCustomerOnFindingByLogin() {
-        Customer customer = customerRepository.findCustomerByLogin(TEST_LOGIN);
-
-        assertEquals(savedCustomer, customer);
-    }
-
-    @Test
-    public void shouldReturnCorrectCustomerOnFindingByPhone() {
-        Customer customer = customerRepository.findCustomerByPhone(TEST_PHONE);
+        Customer customer = customerRepository.findCustomerByUsername(TEST_LOGIN);
 
         assertEquals(savedCustomer, customer);
     }

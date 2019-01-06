@@ -43,9 +43,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void addToCart(String login, String goodName, long amount) {
+    public void addToCart(String username, String goodName, long amount) {
         Goods goods = goodsRepository.findByName(goodName);
-        Customer customer = customerRepository.findCustomerByLogin(login);
+        Customer customer = customerRepository.findCustomerByUsername(username);
 
         customer.getCart().addToCart(goods, amount);
 
@@ -53,9 +53,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void removeFromCart(String login, String goodName, long amount) {
+    public void removeFromCart(String username, String goodName, long amount) {
         Goods goods = goodsRepository.findByName(goodName);
-        Customer customer = customerRepository.findCustomerByLogin(login);
+        Customer customer = customerRepository.findCustomerByUsername(username);
 
         customer.getCart().removeFromCart(goods, amount);
 
@@ -63,8 +63,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void removeGoodsFromCart(String login, String goodsName) {
-        Customer customer = customerRepository.findCustomerByLogin(login);
+    public void removeGoodsFromCart(String username, String goodsName) {
+        Customer customer = customerRepository.findCustomerByUsername(username);
 
         Goods goods = goodsRepository.findByName(goodsName);
 
@@ -74,23 +74,23 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void clearCart(String login) {
-        Cart cart = customerRepository.findCustomerByLogin(login).getCart();
+    public void clearCart(String username) {
+        Cart cart = customerRepository.findCustomerByUsername(username).getCart();
 
         cart.clear();
     }
 
     @Override
-    public void checkout(String login) {
-        Customer customer = customerRepository.findCustomerByLogin(login);
+    public void checkout(String username) {
+        Customer customer = customerRepository.findCustomerByUsername(username);
 
         customer.getCart().clear();
 
     }
 
     @Override
-    public Cart getCart(String login) {
-        return customerRepository.findCustomerByLogin(login).getCart();
+    public Cart getCart(String username) {
+        return customerRepository.findCustomerByUsername(username).getCart();
     }
 
     @Override

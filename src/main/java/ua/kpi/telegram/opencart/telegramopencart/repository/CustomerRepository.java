@@ -6,7 +6,5 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    Customer findCustomerByLogin(String login);
-
-    Customer findCustomerByPhone(String phone);
+    Customer findCustomerByUsername(String username);
 }
