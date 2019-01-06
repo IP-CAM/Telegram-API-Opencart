@@ -30,14 +30,14 @@ public class CustomerController {
 
     @PostMapping("/customer/{customerId}/cart/goods/{goodsId}")
     public void addToCart(@PathVariable("customerId") long customerId,
-                          @RequestParam("goodsId") long goodsId,
+                          @PathVariable("goodsId") long goodsId,
                           @RequestParam("amount") long amount) {
         customerService.addToCart(customerId, goodsId, amount);
     }
 
     @DeleteMapping("/customer/{name}/cart/goods/{goodsname}")
     public void removeFromCart(@PathVariable("name") long customerId,
-                               @RequestParam("goodsname") long goodsId,
+                               @PathVariable("goodsname") long goodsId,
                                @RequestParam("amount") long amount) {
         if (amount == 0) {
             customerService.removeGoodsFromCart(customerId, goodsId);
@@ -48,7 +48,7 @@ public class CustomerController {
     }
 
     @GetMapping("/customer/{customerId}/cart/goods")
-    public List<Goods> getAllCustomerGoods(@PathVariable("name") long customerId) {
+    public List<Goods> getAllCustomerGoods(@PathVariable("customerId") long customerId) {
         return customerService.getAllCustomerGoods(customerId);
     }
 
