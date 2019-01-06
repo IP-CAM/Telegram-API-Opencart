@@ -28,37 +28,37 @@ public class CustomerController {
         customerService.register(customerDto);
     }
 
-    @PostMapping("/customer/{name}/cart/goods/{goodsname}")
-    public void addToCart(@PathVariable("name") String customerName,
-                          @RequestParam("goodsname") String goodsName,
+    @PostMapping("/customer/{customerId}/cart/goods/{goodsId}")
+    public void addToCart(@PathVariable("customerId") long customerId,
+                          @RequestParam("goodsId") long goodsId,
                           @RequestParam("amount") long amount) {
-        customerService.addToCart(customerName, goodsName, amount);
+        customerService.addToCart(customerId, goodsId, amount);
     }
 
     @DeleteMapping("/customer/{name}/cart/goods/{goodsname}")
-    public void removeFromCart(@PathVariable("name") String customerName,
-                               @RequestParam("goodsname") String goodsName,
+    public void removeFromCart(@PathVariable("name") long customerId,
+                               @RequestParam("goodsname") long goodsId,
                                @RequestParam("amount") long amount) {
         if (amount == 0) {
-            customerService.removeGoodsFromCart(customerName, goodsName);
+            customerService.removeGoodsFromCart(customerId, goodsId);
 
         } else {
-            customerService.removeFromCart(customerName, goodsName, amount);
+            customerService.removeFromCart(customerId, goodsId, amount);
         }
     }
 
-    @GetMapping("/customer/{name}/cart/goods")
-    public List<Goods> getAllCustomerGoods(@PathVariable("name") String login) {
-        return customerService.getAllCustomerGoods(login);
+    @GetMapping("/customer/{customerId}/cart/goods")
+    public List<Goods> getAllCustomerGoods(@PathVariable("name") long customerId) {
+        return customerService.getAllCustomerGoods(customerId);
     }
 
-    @GetMapping("/customer/{name}/cart/")
-    public Cart getCustomerCart(@PathVariable("name") String login) {
-        return customerService.getCart(login);
+    @GetMapping("/customer/{customerId}/cart/")
+    public Cart getCustomerCart(@PathVariable("customerId") long customerId) {
+        return customerService.getCart(customerId);
     }
 
-    @DeleteMapping("/customer/{name}/cart/goods")
-    public void clearCart(@PathVariable("name") String login) {
-        customerService.clearCart(login);
+    @DeleteMapping("/customer/{customerId}/cart/goods")
+    public void clearCart(@PathVariable("customerId") long customerId) {
+        customerService.clearCart(customerId);
     }
 }

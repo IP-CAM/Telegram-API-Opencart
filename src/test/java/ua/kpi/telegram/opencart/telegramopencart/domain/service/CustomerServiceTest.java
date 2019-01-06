@@ -68,51 +68,51 @@ public class CustomerServiceTest {
 //
 //        assertEquals(savedCustomer, customer);
     }
-
-    @Test
-    public void shouldSumAlreadyExisted() {
-        customerService.addToCart(TEST_LOGIN, TEST_GOOD_2, 3);
-
-        assertEquals(savedGoods1, savedCustomer.getCart().getBuyItems().get(0).getGoods());
-    }
-
-    @Test
-    public void shouldAddNewItemToCart() {
-        customerService.addToCart(TEST_LOGIN, TEST_GOOD_3, 3);
-
-        assertEquals(savedGoods1, savedCustomer.getCart().getBuyItems().get(0).getGoods());
-    }
-
-    @Test
-    public void shouldReturnTwoAmount() {
-        customerService.removeFromCart(TEST_LOGIN, TEST_GOOD_1, 2);
-
-        assertEquals(2, savedCustomer.getCart().getBuyItems().get(0).getAmount());
-    }
-
-    @Test
-    public void shouldReturnEmptyCartOnClearingCart() {
-        customerService.clearCart(TEST_LOGIN);
-
-        assertTrue(savedCustomer.getCart().isEmpty());
-    }
-
-    @Test
-    public void shouldReturnEmptyCartOnCheckout() {
-        customerService.checkout(TEST_LOGIN);
-
-        assertTrue(savedCustomer.getCart().isEmpty());
-    }
-
-    @Test
-    public void shouldReturnSavedGoodsTwo() {
-        customerService.removeGoodsFromCart(TEST_LOGIN, TEST_GOOD_1);
-
-        assertEquals(savedGoods2, savedCustomer.getCart().getBuyItems().get(0).getGoods());
-    }
-
-    @Test
-    public void shouldReturnSameListAsRepository() {
-        //assertEquals(asList(savedGoods1, savedGoods2), customerService.getAllCustomerGoods());
-    }
+//
+//    @Test
+//    public void shouldSumAlreadyExisted() {
+//        customerService.addToCart(TEST_LOGIN, TEST_GOOD_2, 3);
+//
+//        assertEquals(savedGoods1, savedCustomer.getCart().getBuyItems().get(0).getGoods());
+//    }
+//
+//    @Test
+//    public void shouldAddNewItemToCart() {
+//        customerService.addToCart(TEST_LOGIN, TEST_GOOD_3, 3);
+//
+//        assertEquals(savedGoods1, savedCustomer.getCart().getBuyItems().get(0).getGoods());
+//    }
+//
+//    @Test
+//    public void shouldReturnTwoAmount() {
+//        customerService.removeFromCart(TEST_LOGIN, TEST_GOOD_1, 2);
+//
+//        assertEquals(2, savedCustomer.getCart().getBuyItems().get(0).getAmount());
+//    }
+//
+//    @Test
+//    public void shouldReturnEmptyCartOnClearingCart() {
+//        customerService.clearCart(TEST_LOGIN);
+//
+//        assertTrue(savedCustomer.getCart().isEmpty());
+//    }
+//
+//    @Test
+//    public void shouldReturnEmptyCartOnCheckout() {
+//        customerService.checkout(TEST_LOGIN);
+//
+//        assertTrue(savedCustomer.getCart().isEmpty());
+//    }
+//
+//    @Test
+//    public void shouldReturnSavedGoodsTwo() {
+//        customerService.removeGoodsFromCart(TEST_LOGIN, TEST_GOOD_1);
+//
+//        assertEquals(savedGoods2, savedCustomer.getCart().getBuyItems().get(0).getGoods());
+//    }
+//
+//    @Test
+//    public void shouldReturnSameListAsRepository() {
+//        //assertEquals(asList(savedGoods1, savedGoods2), customerService.getAllCustomerGoods());
+//    }
 }

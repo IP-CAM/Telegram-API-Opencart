@@ -9,17 +9,17 @@ import java.util.List;
 public interface CustomerService {
     void register(CustomerDto customerDto);
 
-    void addToCart(String login, String goods, long amount);
+    void addToCart(long customerId, long goodsId, long amount);
 
-    void removeFromCart(String login, String goodName, long amount);
+    void removeFromCart(long customerId, long goodsId, long amount);
 
-    void removeGoodsFromCart(String login, String goods);
+    void removeGoodsFromCart(long customerId, long goodsId);
 
-    void clearCart(String login);
+    void clearCart(long customerId);
 
-    void checkout(String login);
+    void checkout(long customerId);
 
-    Cart getCart(String login);
+    Cart getCart(long customerId);
 
-    List<Goods> getAllCustomerGoods(String login);
+    List<Goods> getAllCustomerGoods(long customerId);
 }
