@@ -11,7 +11,6 @@ import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.impl.CustomerServiceImpl;
 import ua.kpi.telegram.opencart.telegramopencart.repository.CustomerRepository;
 import ua.kpi.telegram.opencart.telegramopencart.repository.taxonomy.GoodsRepository;
-import ua.kpi.telegram.opencart.telegramopencart.web.dto.CustomerDto;
 
 import java.time.Instant;
 
@@ -39,7 +38,7 @@ public class CustomerServiceTest {
 
     private static final String TEST_GOOD_3 = "testGood3";
 
-    private Customer savedCustomer;
+    private Customer savedCustomer = new Customer();
 
     private Goods savedGoods1 = new Goods(TEST_GOOD_1, "testDescription1", 123);
 
@@ -53,7 +52,7 @@ public class CustomerServiceTest {
         savedCustomer.getCart().addToCart(savedGoods1, 4);
         savedCustomer.getCart().addToCart(savedGoods2, 5);
 
-        when(customerRepository.findCustomerByLogin(any(String.class))).thenReturn(savedCustomer);
+        when(customerRepository.findCustomerByUsername(any(String.class))).thenReturn(savedCustomer);
         when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
         when(goodsRepository.findByName(any(String.class))).thenReturn(savedGoods1);
     }
