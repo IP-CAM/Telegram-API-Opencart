@@ -6,7 +6,7 @@ public class CustomerDto {
     private long id;
 
     @JsonProperty("is_bot")
-    private boolean isBot;
+    private boolean bot;
 
     @JsonProperty("first_name")
     private String firstName;
@@ -28,11 +28,11 @@ public class CustomerDto {
     }
 
     public boolean isBot() {
-        return isBot;
+        return bot;
     }
 
     public void setBot(boolean bot) {
-        isBot = bot;
+        this.bot = bot;
     }
 
     public String getFirstName() {
