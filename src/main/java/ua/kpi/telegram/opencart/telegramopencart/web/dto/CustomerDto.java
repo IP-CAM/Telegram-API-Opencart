@@ -16,7 +16,7 @@ public class CustomerDto {
 
     private String username;
 
-    @JsonProperty("en")
+    @JsonProperty("language_code")
     private String languageCode;
 
     public long getId() {
