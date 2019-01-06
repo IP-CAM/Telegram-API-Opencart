@@ -43,9 +43,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void addToCart(String username, String goodName, long amount) {
-        Goods goods = goodsRepository.findByName(goodName);
-        Customer customer = customerRepository.findCustomerByUsername(username);
+    public void addToCart(long customerId, long goodsId, long amount) {
+        Goods goods = goodsRepository.findById(goodsId);
+        Customer customer = customerRepository.findById(customerId);
 
         customer.getCart().addToCart(goods, amount);
 
@@ -53,9 +53,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void removeFromCart(String username, String goodName, long amount) {
-        Goods goods = goodsRepository.findByName(goodName);
-        Customer customer = customerRepository.findCustomerByUsername(username);
+    public void removeFromCart(long customerId, long goodsId, long amount) {
+        Goods goods = goodsRepository.findById(goodsId);
+        Customer customer = customerRepository.findById(customerId);
 
         customer.getCart().removeFromCart(goods, amount);
 
@@ -63,10 +63,10 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void removeGoodsFromCart(String username, String goodsName) {
-        Customer customer = customerRepository.findCustomerByUsername(username);
+    public void removeGoodsFromCart(long username, long goodsId) {
+        Customer customer = customerRepository.findById(username);
 
-        Goods goods = goodsRepository.findByName(goodsName);
+        Goods goods = goodsRepository.findById(goodsId);
 
         customer.getCart().removeFromCart(goods);
 
@@ -74,28 +74,28 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void clearCart(String username) {
-        Cart cart = customerRepository.findCustomerByUsername(username).getCart();
+    public void clearCart(long customerId) {
+        Cart cart = customerRepository.findById(customerId).getCart();
 
         cart.clear();
     }
 
     @Override
-    public void checkout(String username) {
-        Customer customer = customerRepository.findCustomerByUsername(username);
+    public void checkout(long customerId) {
+        Customer customer = customerRepository.findById(customerId);
 
         customer.getCart().clear();
 
     }
 
     @Override
-    public Cart getCart(String username) {
-        return customerRepository.findCustomerByUsername(username).getCart();
+    public Cart getCart(long customerId) {
+        return customerRepository.findById(customerId).getCart();
     }
 
     @Override
-    public List<Goods> getAllCustomerGoods(String login) {
-        return getCart(login).getBuyItems()
+    public List<Goods> getAllCustomerGoods(long customerId) {
+        return getCart(customerId).getBuyItems()
                 .stream()
                 .map(BuyItem::getGoods)
                 .collect(toList());
