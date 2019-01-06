@@ -16,8 +16,8 @@ public class Customer implements Identified {
     @Id
     private long id;
 
-    @Column(name = "is_bot")
-    private boolean isBot;
+    @Column(name = "bot")
+    private boolean bot;
 
     private String username;
 
@@ -49,11 +49,11 @@ public class Customer implements Identified {
     }
 
     public boolean isBot() {
-        return isBot;
+        return bot;
     }
 
     public void setBot(boolean bot) {
-        isBot = bot;
+        this.bot = bot;
     }
 
     public String getUsername() {
@@ -110,7 +110,7 @@ public class Customer implements Identified {
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
         return id == customer.id &&
-                isBot == customer.isBot &&
+                bot == customer.bot &&
                 Objects.equals(username, customer.username) &&
                 Objects.equals(firstName, customer.firstName) &&
                 Objects.equals(lastName, customer.lastName) &&
@@ -121,6 +121,6 @@ public class Customer implements Identified {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, isBot, username, firstName, lastName, languageCode, cart, registerDate);
+        return Objects.hash(id, bot, username, firstName, lastName, languageCode, cart, registerDate);
     }
 }
