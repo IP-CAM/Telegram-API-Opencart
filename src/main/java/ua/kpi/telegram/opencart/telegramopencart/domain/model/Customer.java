@@ -30,6 +30,8 @@ public class Customer implements Identified {
     @Column(name = "language_code")
     private String languageCode;
 
+    private UserRole userRole;
+
     @OneToOne
     @Cascade(ALL)
     private Cart cart = new Cart();
@@ -46,6 +48,14 @@ public class Customer implements Identified {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
     public boolean isBot() {
