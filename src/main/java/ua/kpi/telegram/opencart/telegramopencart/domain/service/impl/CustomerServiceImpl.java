@@ -78,9 +78,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void clearCart(long customerId) {
-        Cart cart = customerRepository.findById(customerId).getCart();
+        Customer customer = customerRepository.findById(customerId);
 
-        cart.clear();
+        customer.getCart().clear();
+
+        customerRepository.saveAndFlush(customer);
     }
 
     @Override
