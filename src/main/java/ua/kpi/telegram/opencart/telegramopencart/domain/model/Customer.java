@@ -30,6 +30,7 @@ public class Customer implements Identified {
     @Column(name = "language_code")
     private String languageCode;
 
+    @Column(name = "user_role")
     private UserRole userRole;
 
     @OneToOne
