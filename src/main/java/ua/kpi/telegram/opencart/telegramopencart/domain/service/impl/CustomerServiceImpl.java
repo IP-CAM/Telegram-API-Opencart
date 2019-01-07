@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         customer.getCart().addToCart(goods, amount);
 
-        customerRepository.save(customer);
+        customerRepository.saveAndFlush(customer);
     }
 
     @Override
