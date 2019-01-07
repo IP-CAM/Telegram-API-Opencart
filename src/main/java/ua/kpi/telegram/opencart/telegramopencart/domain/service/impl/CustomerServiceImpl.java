@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.BuyItem;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Cart;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.Customer;
+import ua.kpi.telegram.opencart.telegramopencart.domain.model.UserRole;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.CustomerService;
 import ua.kpi.telegram.opencart.telegramopencart.repository.CustomerRepository;
@@ -14,6 +15,7 @@ import java.time.Instant;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+import static ua.kpi.telegram.opencart.telegramopencart.domain.model.UserRole.USER;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -38,6 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setBot(customerDto.isBot());
         customer.setLanguageCode(customerDto.getLanguageCode());
         customer.setRegisterDate(Instant.now());
+        customer.setUserRole(USER);
 
         customerRepository.save(customer);
     }
@@ -63,8 +66,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void removeGoodsFromCart(long username, long goodsId) {
-        Customer customer = customerRepository.findById(username);
+    public void removeGoodsFromCart(long customerId, long goodsId) {
+        Customer customer = customerRepository.findById(customerId);
 
         Goods goods = goodsRepository.findById(goodsId);
 

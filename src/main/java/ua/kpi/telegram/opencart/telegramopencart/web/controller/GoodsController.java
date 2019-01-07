@@ -1,6 +1,7 @@
 package ua.kpi.telegram.opencart.telegramopencart.web.controller;
 
 import org.slf4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
+import ua.kpi.telegram.opencart.telegramopencart.domain.service.AuthorizationService;
 import ua.kpi.telegram.opencart.telegramopencart.domain.service.GoodsService;
 
 import java.util.List;
@@ -18,11 +20,16 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 @RestController
 public class GoodsController {
+    private static final int NOT_ACCESS_STATUS_CODE = 403;
+
     private final Logger logger = getLogger(GoodsController.class);
+
+    private final AuthorizationService authorizationService;
 
     private final GoodsService goodsService;
 
-    public GoodsController(GoodsService goodsService) {
+    public GoodsController(AuthorizationService authorizationService, GoodsService goodsService) {
+        this.authorizationService = authorizationService;
         this.goodsService = goodsService;
     }
 
@@ -47,18 +54,34 @@ public class GoodsController {
     }
 
     @PutMapping("/goods")
-    public Goods createGoods(@RequestBody Goods goods) {
-        return goodsService.add(goods);
+    public ResponseEntity<Goods> createGoods(@RequestParam("authentication") String authentication,
+                                             @RequestBody Goods goods) {
+        if (authorizationService.hasTaxonomyUnitChangeAccess(authentication)) {
+            return ResponseEntity.ok(goodsService.add(goods));
+        } else {
+            return ResponseEntity.status(403).build();
+        }
     }
 
     @PostMapping("/goods")
-    public Goods updateGoods(@RequestBody Goods goods,
-                             @RequestParam("id") long goodsId) {
-        return goodsService.update(goods, goodsId);
+    public ResponseEntity<Goods> updateGoods(@RequestParam("authentication") String authentication,
+                                             @RequestBody Goods goods,
+                                             @RequestParam("id") long goodsId) {
+        if (authorizationService.hasTaxonomyUnitChangeAccess(authentication)) {
+            return ResponseEntity.ok(goodsService.update(goods, goodsId));
+        } else {
+            return ResponseEntity.status(NOT_ACCESS_STATUS_CODE).build();
+        }
     }
 
     @DeleteMapping("/goods")
-    public void deleteGoods(@RequestParam("id") long goodsId) {
-        goodsService.remove(goodsId);
+    public ResponseEntity deleteGoods(@RequestParam("authentication") String authentication,
+                                      @RequestParam("id") long goodsId) {
+        if (authorizationService.hasTaxonomyUnitChangeAccess(authentication)) {
+            goodsService.remove(goodsId);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(403).build();
+        }
     }
 }

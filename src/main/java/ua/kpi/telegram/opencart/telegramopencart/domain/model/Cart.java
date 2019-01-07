@@ -55,9 +55,7 @@ public class Cart implements Identified {
 
     public boolean removeFromCart(Goods goods) {
         if (isGoodsPresentInCart(goods)) {
-            this.buyItems = buyItems.stream()
-                    .filter(buyItem -> !buyItem.getGoods().equals(goods))
-                    .collect(toList());
+            this.buyItems.removeAll(buyItems.stream().filter(buyItem -> !buyItem.getGoods().equals(goods)).collect(toList()));
             return true;
         } else {
             return false;

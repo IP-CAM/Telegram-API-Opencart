@@ -35,13 +35,12 @@ public class CustomerController {
         customerService.addToCart(customerId, goodsId, amount);
     }
 
-    @DeleteMapping("/customer/{name}/cart/goods/{goodsname}")
+    @DeleteMapping("/customer/{name}/cart/goods/{goodsId}")
     public void removeFromCart(@PathVariable("name") long customerId,
-                               @PathVariable("goodsname") long goodsId,
+                               @PathVariable("goodsId") long goodsId,
                                @RequestParam("amount") long amount) {
         if (amount == 0) {
             customerService.removeGoodsFromCart(customerId, goodsId);
-
         } else {
             customerService.removeFromCart(customerId, goodsId, amount);
         }
