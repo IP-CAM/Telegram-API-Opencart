@@ -1,5 +1,6 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ public class BuyItem implements Identified {
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
+    @JsonIgnore
     private Cart cart;
 
     @ManyToOne
