@@ -19,10 +19,11 @@ public class BuyItem implements Identified {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     @ManyToOne
-    @JoinColumn(name="goods_id")
+    @JoinColumn(name = "goods_id")
     private Goods goods;
 
     private long amount;
@@ -66,6 +67,14 @@ public class BuyItem implements Identified {
 
     public void reduceAmount(long amount) {
         this.amount -= amount;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     @Override

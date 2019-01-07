@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ public class Cart implements Identified {
     private long id;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cart")
-    @JoinColumn(name = "cart_id")
     private List<BuyItem> buyItems = new ArrayList<>();
 
     public void addToCart(Goods goods, long amount) {
