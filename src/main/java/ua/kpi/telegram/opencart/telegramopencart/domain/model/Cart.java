@@ -64,10 +64,7 @@ public class Cart implements Identified {
     }
 
     public void clear() {
-        for (Iterator<BuyItem> buyItemIterator = this.buyItems.iterator(); buyItemIterator.hasNext(); ) {
-            BuyItem buyItem = buyItemIterator.next();
-            this.buyItems.remove(buyItem);
-        }
+        buyItems = new ArrayList<>();
     }
 
     public boolean isEmpty() {
