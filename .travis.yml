@@ -1,6 +1,1 @@
 language: java
-services:
-  - postgresql
-
-before_script:
-  - psql -c 'create database example;' -U example
