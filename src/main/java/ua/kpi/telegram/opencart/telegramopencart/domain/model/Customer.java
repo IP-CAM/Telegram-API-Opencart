@@ -4,6 +4,8 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import java.time.Instant;
@@ -31,6 +33,7 @@ public class Customer implements Identified {
     private String languageCode;
 
     @Column(name = "user_role")
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
     @OneToOne
