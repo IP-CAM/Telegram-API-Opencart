@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -63,7 +64,10 @@ public class Cart implements Identified {
     }
 
     public void clear() {
-        buyItems.clear();
+        for (Iterator<BuyItem> buyItemIterator = this.buyItems.iterator(); buyItemIterator.hasNext(); ) {
+            BuyItem buyItem = buyItemIterator.next();
+            this.buyItems.remove(buyItem);
+        }
     }
 
     public boolean isEmpty() {
