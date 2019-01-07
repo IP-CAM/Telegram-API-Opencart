@@ -19,6 +19,9 @@ public class BuyItem implements Identified {
     private long id;
 
     @ManyToOne
+    private Cart cart;
+
+    @ManyToOne
     @JoinColumn(name="goods_id")
     private Goods goods;
 

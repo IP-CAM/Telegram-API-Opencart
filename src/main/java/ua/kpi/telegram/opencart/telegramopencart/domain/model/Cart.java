@@ -24,7 +24,7 @@ public class Cart implements Identified {
     @SequenceGenerator(name = "cart_id_sequence", sequenceName = "cart_id_sequence", allocationSize = 1)
     private long id;
 
-    @OneToMany(orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cart")
     @JoinColumn(name = "cart_id")
     private List<BuyItem> buyItems = new ArrayList<>();
 
