@@ -1,12 +1,6 @@
 language: java
 services:
-  - docker
-env:
-  - DOCKER_COMPOSE_VERSION=1.4.2
+  - postgresql
 
-before_install:
-  - docker build -t telegram-opencart .
-  - sudo service postgresql stop
-
-install:
-  - docker-compose up
+before_script:
+  - psql -c 'create database example;' -U postgres
