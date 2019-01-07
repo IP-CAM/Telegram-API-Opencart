@@ -35,8 +35,8 @@ public class CustomerController {
         customerService.addToCart(customerId, goodsId, amount);
     }
 
-    @DeleteMapping("/customer/{name}/cart/goods/{goodsId}")
-    public void removeFromCart(@PathVariable("name") long customerId,
+    @DeleteMapping("/customer/{customerId}/cart/goods/{goodsId}")
+    public void removeFromCart(@PathVariable("customerId") long customerId,
                                @PathVariable("goodsId") long goodsId,
                                @RequestParam("amount") long amount) {
         if (amount == 0) {

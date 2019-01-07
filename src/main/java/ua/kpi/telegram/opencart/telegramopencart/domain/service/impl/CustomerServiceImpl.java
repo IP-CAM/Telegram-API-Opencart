@@ -62,7 +62,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         customer.getCart().removeFromCart(goods, amount);
 
-        customerRepository.save(customer);
+        customerRepository.saveAndFlush(customer);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         customer.getCart().removeFromCart(goods);
 
-        customerRepository.save(customer);
+        customerRepository.saveAndFlush(customer);
     }
 
     @Override
