@@ -1,6 +1,5 @@
 package ua.kpi.telegram.opencart.telegramopencart.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import ua.kpi.telegram.opencart.telegramopencart.domain.model.taxonomy.Goods;
 
 import javax.persistence.Entity;
@@ -18,11 +17,6 @@ public class BuyItem implements Identified {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "buyitem_id_sequence")
     @SequenceGenerator(name = "buyitem_id_sequence", sequenceName = "buyitem_id_sequence", allocationSize = 1)
     private long id;
-
-    @ManyToOne
-    @JoinColumn(name = "cart_id")
-    @JsonIgnore
-    private Cart cart;
 
     @ManyToOne
     @JoinColumn(name = "goods_id")
@@ -69,14 +63,6 @@ public class BuyItem implements Identified {
 
     public void reduceAmount(long amount) {
         this.amount -= amount;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 
     @Override
