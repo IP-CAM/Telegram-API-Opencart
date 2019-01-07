@@ -63,7 +63,7 @@ public class Cart implements Identified {
     }
 
     public void clear() {
-        buyItems = new ArrayList<>();
+        buyItems.clear();
     }
 
     public boolean isEmpty() {
