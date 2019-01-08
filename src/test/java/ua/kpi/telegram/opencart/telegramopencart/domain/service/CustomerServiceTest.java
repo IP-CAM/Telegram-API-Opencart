@@ -70,7 +70,7 @@ public class CustomerServiceTest {
         savedCustomer.setId(TEST_USER_ID);
 
         when(customerRepository.findById(anyLong())).thenReturn(savedCustomer);
-        when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
+        //when(customerRepository.save(any(Customer.class))).thenReturn(savedCustomer);
         when(goodsRepository.findById(anyLong())).thenReturn(savedGoods1);
     }
 
