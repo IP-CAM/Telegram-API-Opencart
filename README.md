@@ -15,6 +15,6 @@ interactive communication and easy-to-use Admin/Seller functionality via app bot
 
 ## Start up guide:
 ```` 
-$ docker build -t telegram-opencart .
-$ docker run telegram-opencart
-````
+$ sh createImages.sh
+$ docker-compose up
+````4# telegram-opencart
